@@ -1,7 +1,6 @@
 package mymap
 
 import (
-	"fmt"
 	"maps"
 	"sync"
 )
@@ -50,10 +49,4 @@ func (m *MyMap[K, V]) Get(key K) (V, bool) {
 	defer m.mu.RUnlock()
 	exists, ok := m.m[key]
 	return exists, ok
-}
-
-func main() {
-	m := NewMyMap[string, float32]()
-	m.Add("asd", 12)
-	fmt.Println(m.Get("asda"))
 }
