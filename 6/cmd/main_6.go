@@ -2,23 +2,14 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
+	g "generator"
 	"time"
 )
-
-func generateRandomInt(ch chan int, count int) {
-	for i := 0; i < count; i++ {
-		r := rand.Intn(100)
-		ch <- r
-		time.Sleep(time.Millisecond * 100)
-	}
-	close(ch)
-}
 
 func main() {
 	ch := make(chan int)
 
-	go generateRandomInt(ch, 50)
+	go g.GenerateRandomInt(ch, 50)
 
 	for c := range ch {
 		fmt.Printf("Случайное число :%d\n", c)
